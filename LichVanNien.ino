@@ -5,9 +5,7 @@
 #include "LichVanNien.h"
 #include <ezTime.h>
 #include <ESP8266WiFi.h>
-#include <AceRoutine.h>
 #include "SSD1306Spi.h"
-using namespace ace_routine;
 
 const char ssid[] = "Bao Tien";     //  your network SSID (name)
 const char pass[] = "123456123456"; // your network password
@@ -49,15 +47,6 @@ void digitalClockFrame()
   display.display();
 }
 
-COROUTINE(digitalClock)
-{
-  COROUTINE_LOOP()
-  {
-    digitalClockFrame();
-    COROUTINE_DELAY(1000);
-  }
-}
-
 void setup()
 {
   Serial.begin(115200);
@@ -89,10 +78,11 @@ void setup()
   waitForSync();
   delay(2000);
   myTZ.setLocation("Asia/Bangkok");
-  CoroutineScheduler::setup();
+
 }
 
 void loop()
 {
-  CoroutineScheduler::loop();
+  digitalClockFrame();
+  delay(1000);
 }
