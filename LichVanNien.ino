@@ -60,7 +60,12 @@ void setup()
   display.init();
   display.flipScreenVertically();
   display.clear();
-  display.setFont(ArialMT_Plain_10);
+  
+  display.setFont(ArialMT_Plain_16);
+  display.setTextAlignment(TEXT_ALIGN_CENTER);
+  display.drawString(clockCenterX, 0, "LICH VAN NIEN");
+
+  display.setFont(ArialMT_Plain_16);
   display.setTextAlignment(TEXT_ALIGN_LEFT);
   display.drawString(0, 16, "Connecting to " + String(ssid));
   display.display();
